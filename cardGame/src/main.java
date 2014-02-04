@@ -9,22 +9,39 @@ public class main implements ActionListener, ListSelectionListener
 	/**
 	 * @param args
 	 */
-
+	JPanel buttonPanel;
+	JButton[] handCards = new JButton[6];
 	public JPanel createContentPane()
 	{
 		
 		JPanel aWildPanel = new JPanel();//aWildPanel is the totalGui panel
 		JList elements;
+		 
 		
 		//all widgets will be placed here
 		String names[] = {"selectable","elements","a","b","c","d","e","f","g","h","i","j","k"};
 		//here is the scroll with selectable elements
 		elements = new JList(names);
-		elements.setVisibleRowCount(10);
+		elements.setVisibleRowCount(5);
 		elements.setFixedCellHeight(20);
 		elements.setFixedCellWidth(100);
 		elements.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		elements.addListSelectionListener(this);
+		
+		buttonPanel = new JPanel();
+		buttonPanel.setLayout(new GridLayout(1,6,60,120));
+		buttonPanel.setLocation(0,1000);
+		buttonPanel.setSize(360,120);
+		aWildPanel.add(buttonPanel);
+		
+		
+		for(int i = 0; i < 6; i++)
+		{
+			handCards[i] = new JButton();
+			handCards[i].addActionListener(this);
+			buttonPanel.add(handCards[i]);
+		}
+		
 		
 		//space out the widgets in the gui using boxLayout
 		JPanel bottomPanel = new JPanel();
@@ -47,7 +64,17 @@ public class main implements ActionListener, ListSelectionListener
 	}
 	public void actionPerformed(ActionEvent e)
 	{
-		
+		for(int i = 0; i<6; i++)
+		{
+			if(e.getSource()==handCards[i])
+			{
+				handCards[i].setText("Selected");				
+			}
+			else
+			{
+				handCards[i].setText("");
+			}
+		}
 	}
 	
 	private static void GUIgenerate()
