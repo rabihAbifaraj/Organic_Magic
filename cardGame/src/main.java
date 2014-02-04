@@ -43,9 +43,9 @@ public class main implements ActionListener, ListSelectionListener
 		
 		
 		buttonPanel = new JPanel();
-		buttonPanel.setLayout(new GridLayout(1,6,60,120));
+		buttonPanel.setLayout(new GridLayout(1,6));
 		//buttonPanel.setLocation(1000,0);
-		buttonPanel.setSize(120,120);
+		//buttonPanel.setSize(120,120);
 		aWildPanel.add(buttonPanel, BorderLayout.PAGE_END);
 		
 		
@@ -83,11 +83,13 @@ public class main implements ActionListener, ListSelectionListener
 		{
 			if(e.getSource()==handCards[i])
 			{
-				handCards[i].setText("Selected");				
+				//handCards[i].setText("Selected");	
+				handCards[i].setSize(345,500);
 			}
 			else
 			{
-				handCards[i].setText("");
+				//handCards[i].setText("");
+				handCards[i].setSize(300,500);
 			}
 		}
 	}
