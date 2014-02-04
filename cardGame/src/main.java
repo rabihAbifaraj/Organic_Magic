@@ -10,11 +10,15 @@ public class main implements ActionListener, ListSelectionListener
 	 * @param args
 	 */
 	JPanel buttonPanel;
+	JPanel scrollPanel;
 	JButton[] handCards = new JButton[6];
+	ImageIcon Base_card = new ImageIcon(this.getClass().getResource("Base_card.jpg"));
+	
 	public JPanel createContentPane()
 	{
 		
 		JPanel aWildPanel = new JPanel();//aWildPanel is the totalGui panel
+		aWildPanel.setLayout(new BorderLayout());
 		JList elements;
 		 
 		
@@ -28,16 +32,27 @@ public class main implements ActionListener, ListSelectionListener
 		elements.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		elements.addListSelectionListener(this);
 		
+		scrollPanel = new JPanel();
+		//scrollPanel.setLayout(new BorderLayout());
+		scrollPanel.setLocation(0,0);
+		aWildPanel.add(scrollPanel, BorderLayout.LINE_START);
+		
+		JScrollPane scrollPane = new JScrollPane(elements, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollPanel.add(scrollPane);
+		
+		
+		
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(new GridLayout(1,6,60,120));
-		buttonPanel.setLocation(0,1000);
-		buttonPanel.setSize(360,120);
-		aWildPanel.add(buttonPanel);
+		//buttonPanel.setLocation(1000,0);
+		buttonPanel.setSize(120,120);
+		aWildPanel.add(buttonPanel, BorderLayout.PAGE_END);
 		
 		
 		for(int i = 0; i < 6; i++)
 		{
-			handCards[i] = new JButton();
+			handCards[i] = new JButton(Base_card);
+			handCards[i].setSize(345,500);
 			handCards[i].addActionListener(this);
 			buttonPanel.add(handCards[i]);
 		}
